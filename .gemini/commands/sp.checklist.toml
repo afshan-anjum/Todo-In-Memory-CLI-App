@@ -18,11 +18,11 @@ description: Generate a custom checklist for the current feature based on user r
 
 **FOR requirements quality validation**:
 
-- ✅ "Are visual hierarchy requirements defined for all card types?" (completeness)
-- ✅ "Is 'prominent display' quantified with specific sizing/positioning?" (clarity)
-- ✅ "Are hover state requirements consistent across all interactive elements?" (consistency)
-- ✅ "Are accessibility requirements defined for keyboard navigation?" (coverage)
-- ✅ "Does the spec define what happens when logo image fails to load?" (edge cases)
+- ✅ "Are the exact fields for a 'Task' entity defined?" (completeness)
+- ✅ "Is 'graceful handling' of invalid input defined with specific user messages?" (clarity)
+- ✅ "Are the commands for marking tasks complete/incomplete consistent?" (consistency)
+- ✅ "Are keyboard shortcuts for menu navigation defined?" (coverage)
+- ✅ "Does the spec define what happens when a user tries to delete a non-existent task?" (edge cases)
 
 **Metaphor**: If your spec is code written in English, the checklist is its unit test suite. You're testing whether the requirements are well-written, complete, unambiguous, and ready for implementation - NOT whether the implementation works.
 
@@ -120,18 +120,18 @@ You **MUST** consider the user input before proceeding (if not empty).
    **HOW TO WRITE CHECKLIST ITEMS - "Unit Tests for English"**:
 
    ❌ **WRONG** (Testing implementation):
-   - "Verify landing page displays 3 episode cards"
-   - "Test hover states work on desktop"
-   - "Confirm logo click navigates home"
+   - "Verify the 'add' command creates a new task"
+   - "Test that invalid input is rejected"
+   - "Confirm the 'list' command displays all tasks"
 
    ✅ **CORRECT** (Testing requirements quality):
-   - "Are the exact number and layout of featured episodes specified?" [Completeness]
-   - "Is 'prominent display' quantified with specific sizing/positioning?" [Clarity]
-   - "Are hover state requirements consistent across all interactive elements?" [Consistency]
-   - "Are keyboard navigation requirements defined for all interactive UI?" [Coverage]
-   - "Is the fallback behavior specified when logo image fails to load?" [Edge Cases]
-   - "Are loading states defined for asynchronous episode data?" [Completeness]
-   - "Does the spec define visual hierarchy for competing UI elements?" [Clarity]
+   - "Are all fields for a 'Task' entity explicitly defined with their types and constraints?" [Completeness]
+   - "Is 'graceful handling' of invalid input defined with specific user-facing error messages?" [Clarity]
+   - "Are the commands for marking tasks complete vs. incomplete consistently defined?" [Consistency]
+   - "Are keyboard shortcuts for menu navigation specified?" [Coverage]
+   - "Is the fallback behavior specified when a user tries to delete a non-existent task?" [Edge Cases]
+   - "Are loading states defined for any potentially slow operations (if any)?" [Completeness]
+   - "Does the spec define the exact output format for the 'list' command?" [Clarity]
 
    **ITEM STRUCTURE**:
    Each item should follow this pattern:
@@ -144,33 +144,30 @@ You **MUST** consider the user input before proceeding (if not empty).
    **EXAMPLES BY QUALITY DIMENSION**:
 
    Completeness:
-   - "Are error handling requirements defined for all API failure modes? [Gap]"
-   - "Are accessibility requirements specified for all interactive elements? [Completeness]"
-   - "Are mobile breakpoint requirements defined for responsive layouts? [Gap]"
+   - "Are error handling requirements defined for all invalid user inputs? [Gap]"
+   - "Are accessibility requirements (e.g., for screen readers) specified? [Completeness]"
 
    Clarity:
-   - "Is 'fast loading' quantified with specific timing thresholds? [Clarity, Spec §NFR-2]"
-   - "Are 'related episodes' selection criteria explicitly defined? [Clarity, Spec §FR-5]"
-   - "Is 'prominent' defined with measurable visual properties? [Ambiguity, Spec §FR-4]"
+   - "Is 'fast response' quantified with specific timing thresholds for each command? [Clarity, Spec §NFR-2]"
+   - "Are the criteria for a 'unique task ID' explicitly defined? [Clarity, Spec §FR-5]"
+   - "Is 'readable format' for the task list defined with a specific layout? [Ambiguity, Spec §FR-4]"
 
    Consistency:
-   - "Do navigation requirements align across all pages? [Consistency, Spec §FR-10]"
-   - "Are card component requirements consistent between landing and detail pages? [Consistency]"
+   - "Do the naming conventions for commands align across the entire UI? [Consistency, Spec §UI-1]"
+   - "Are the error messages for similar invalid inputs (e.g., non-existent ID) consistent? [Consistency]"
 
    Coverage:
-   - "Are requirements defined for zero-state scenarios (no episodes)? [Coverage, Edge Case]"
-   - "Are concurrent user interaction scenarios addressed? [Coverage, Gap]"
-   - "Are requirements specified for partial data loading failures? [Coverage, Exception Flow]"
+   - "Are requirements defined for the zero-state scenario (no tasks in the list)? [Coverage, Edge Case]"
+   - "Are requirements specified for handling the maximum number of tasks (1000)? [Coverage, Exception Flow]"
 
    Measurability:
-   - "Are visual hierarchy requirements measurable/testable? [Acceptance Criteria, Spec §FR-1]"
-   - "Can 'balanced visual weight' be objectively verified? [Measurability, Spec §FR-2]"
+   - "Are the 'clean code' principles measurable/testable? [Acceptance Criteria, Spec §Code-Quality]"
+   - "Can '>70% code coverage' be objectively verified? [Measurability, Spec §Testing]"
 
    **Scenario Classification & Coverage** (Requirements Quality Focus):
    - Check if requirements exist for: Primary, Alternate, Exception/Error, Recovery, Non-Functional scenarios
    - For each scenario class, ask: "Are [scenario type] requirements complete, clear, and consistent?"
    - If scenario class missing: "Are [scenario type] requirements intentionally excluded or missing? [Gap]"
-   - Include resilience/rollback when state mutation occurs: "Are rollback requirements defined for migration failures? [Gap]"
 
    **Traceability Requirements**:
    - MINIMUM: ≥80% of items MUST include at least one traceability reference
@@ -179,11 +176,11 @@ You **MUST** consider the user input before proceeding (if not empty).
 
    **Surface & Resolve Issues** (Requirements Quality Problems):
    Ask questions about the requirements themselves:
-   - Ambiguities: "Is the term 'fast' quantified with specific metrics? [Ambiguity, Spec §NFR-1]"
-   - Conflicts: "Do navigation requirements conflict between §FR-10 and §FR-10a? [Conflict]"
-   - Assumptions: "Is the assumption of 'always available podcast API' validated? [Assumption]"
-   - Dependencies: "Are external podcast API requirements documented? [Dependency, Gap]"
-   - Missing definitions: "Is 'visual hierarchy' defined with measurable criteria? [Gap]"
+   - Ambiguities: "Is the term 'intuitive' in the menu navigation requirement quantified? [Ambiguity, Spec §Usability]"
+   - Conflicts: "Do the `Add Task` and `Update Task` requirements for `title` length conflict? [Conflict]"
+   - Assumptions: "Is the assumption of a 'single-user' environment validated and documented? [Assumption]"
+   - Dependencies: "Are any dependencies on standard library modules explicitly documented? [Dependency, Gap]"
+   - Missing definitions: "Is 'clear visual formatting' for the task list defined with measurable criteria? [Gap]"
 
    **Content Consolidation**:
    - Soft cap: If raw candidate items > 40, prioritize by risk/impact
@@ -224,67 +221,58 @@ To avoid clutter, use descriptive types and clean up obsolete checklists when do
 
 ## Example Checklist Types & Sample Items
 
-**UX Requirements Quality:** `ux.md`
+**UI/UX Requirements Quality:** `ux.md`
 
 Sample items (testing the requirements, NOT the implementation):
 
-- "Are visual hierarchy requirements defined with measurable criteria? [Clarity, Spec §FR-1]"
-- "Is the number and positioning of UI elements explicitly specified? [Completeness, Spec §FR-1]"
-- "Are interaction state requirements (hover, focus, active) consistently defined? [Consistency]"
-- "Are accessibility requirements specified for all interactive elements? [Coverage, Gap]"
-- "Is fallback behavior defined when images fail to load? [Edge Case, Gap]"
-- "Can 'prominent display' be objectively measured? [Measurability, Spec §FR-4]"
+- "Are the menu options explicitly defined with their corresponding numbers? [Clarity, Spec §UI-1]"
+- "Are the formats for success and error messages consistently defined? [Consistency]"
+- "Are accessibility requirements for the console UI specified? [Coverage, Gap]"
+- "Is fallback behavior defined for invalid menu choices? [Edge Case, Gap]"
+- "Can 'intuitive menu navigation' be objectively measured? [Measurability, Spec §Usability]"
 
-**API Requirements Quality:** `api.md`
+**API/Service Requirements Quality:** `services.md`
 
 Sample items:
 
-- "Are error response formats specified for all failure scenarios? [Completeness]"
-- "Are rate limiting requirements quantified with specific thresholds? [Clarity]"
-- "Are authentication requirements consistent across all endpoints? [Consistency]"
-- "Are retry/timeout requirements defined for external dependencies? [Coverage, Gap]"
-- "Is versioning strategy documented in requirements? [Gap]"
+- "Are error return types specified for all service layer failure scenarios? [Completeness]"
+- "Are the constraints on input parameters (e.g., string length) quantified? [Clarity]"
+- "Are the data structures returned by the service layer explicitly defined? [Consistency]"
 
 **Performance Requirements Quality:** `performance.md`
 
 Sample items:
 
-- "Are performance requirements quantified with specific metrics? [Clarity]"
-- "Are performance targets defined for all critical user journeys? [Coverage]"
-- "Are performance requirements under different load conditions specified? [Completeness]"
-- "Can performance requirements be objectively measured? [Measurability]"
-- "Are degradation requirements defined for high-load scenarios? [Edge Case, Gap]"
+- "Are performance requirements quantified with specific metrics for each command? [Clarity]"
+- "Are performance targets defined for handling the maximum number of tasks (1000)? [Coverage]"
+- "Can 'instant response' be objectively measured? [Measurability]"
 
 **Security Requirements Quality:** `security.md`
 
 Sample items:
 
-- "Are authentication requirements specified for all protected resources? [Coverage]"
-- "Are data protection requirements defined for sensitive information? [Completeness]"
-- "Is the threat model documented and requirements aligned to it? [Traceability]"
-- "Are security requirements consistent with compliance obligations? [Consistency]"
-- "Are security failure/breach response requirements defined? [Gap, Exception Flow]"
+- "Are input validation requirements specified for all user-provided data? [Coverage]"
+- "Are data sanitization requirements defined to prevent injection attacks (if applicable)? [Completeness]"
+- "Are there any requirements for handling sensitive data (if any)? [Gap]"
 
 ## Anti-Examples: What NOT To Do
 
 **❌ WRONG - These test implementation, not requirements:**
 
 ```markdown
-- [ ] CHK001 - Verify landing page displays 3 episode cards [Spec §FR-001]
-- [ ] CHK002 - Test hover states work correctly on desktop [Spec §FR-003]
-- [ ] CHK003 - Confirm logo click navigates to home page [Spec §FR-010]
-- [ ] CHK004 - Check that related episodes section shows 3-5 items [Spec §FR-005]
+- [ ] CHK001 - Verify the 'add' command adds a task to the list.
+- [ ] CHK002 - Test that entering a non-numeric menu choice is handled.
+- [ ] CHK003 - Confirm the 'list' command prints tasks.
 ```
 
 **✅ CORRECT - These test requirements quality:**
 
 ```markdown
-- [ ] CHK001 - Are the number and layout of featured episodes explicitly specified? [Completeness, Spec §FR-001]
-- [ ] CHK002 - Are hover state requirements consistently defined for all interactive elements? [Consistency, Spec §FR-003]
-- [ ] CHK003 - Are navigation requirements clear for all clickable brand elements? [Clarity, Spec §FR-010]
-- [ ] CHK004 - Is the selection criteria for related episodes documented? [Gap, Spec §FR-005]
-- [ ] CHK005 - Are loading state requirements defined for asynchronous episode data? [Gap]
-- [ ] CHK006 - Can "visual hierarchy" requirements be objectively measured? [Measurability, Spec §FR-001]
+- [ ] CHK001 - Are the precise fields and data types for a new task specified for the 'add' command? [Completeness, Spec §Add-Task]
+- [ ] CHK002 - Are the specific error messages for invalid menu inputs defined? [Clarity, Spec §Input-Standards]
+- [ ] CHK003 - Does the spec for the 'list' command define the exact output format? [Clarity, Spec §View-Task-List]
+- [ ] CHK004 - Are requirements for handling an empty task list defined? [Gap]
+- [ ] CHK005 - Can the 'Clear prompts for user input' requirement be objectively measured? [Measurability, Spec §Input-Standards]
 ```
 
 **Key Differences:**
@@ -311,7 +299,7 @@ As the main request completes, you MUST create and complete a PHR (Prompt Histor
      - `general` → `history/prompts/general/`
 
 3) Create and Fill PHR (Shell first; fallback agent‑native)
-   - Run: `.specify/scripts/bash/create-phr.sh --title "<title>" --stage <stage> [--feature <name>] --json`
+   - Run: `.specify/scripts/powershell/create-phr.ps1 --title "<title>" --stage <stage> [--feature <name>] --json` (NOTE: This script does not yet exist)
    - Open the file and fill remaining placeholders (YAML + body), embedding full PROMPT_TEXT (verbatim) and concise RESPONSE_TEXT.
    - If the script fails:
      - Read `.specify/templates/phr-template.prompt.md` (or `templates/…`)

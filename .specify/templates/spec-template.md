@@ -97,14 +97,14 @@
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **Task**: Represents a single todo item. Attributes include: `id`, `title`, `description`, `created_at`, `completed`, `completed_at`.
 
-## Success Criteria *(mandatory)*
+### Success Criteria *(mandatory)*
 
 <!--
   ACTION REQUIRED: Define measurable success criteria.
   These must be technology-agnostic and measurable.
+  Ensure these criteria align with the overall project Success Criteria in the constitution.
 -->
 
 ### Measurable Outcomes

@@ -112,7 +112,7 @@ Focus on high-signal findings. Limit to 50 findings total; aggregate remainder i
 - Terminology drift (same concept named differently across files)
 - Data entities referenced in plan but absent in spec (or vice versa)
 - Task ordering contradictions (e.g., integration tasks before foundational setup tasks without dependency note)
-- Conflicting requirements (e.g., one requires Next.js while other specifies Vue)
+- Conflicting requirements (e.g., one requires in-memory storage while another specifies file-based persistence)
 
 ### 5. Severity Assignment
 
@@ -201,7 +201,7 @@ As the main request completes, you MUST create and complete a PHR (Prompt Histor
      - `general` → `history/prompts/general/`
 
 3) Create and Fill PHR (Shell first; fallback agent‑native)
-   - Run: `.specify/scripts/bash/create-phr.sh --title "<title>" --stage <stage> [--feature <name>] --json`
+   - Run: `.specify/scripts/powershell/create-phr.ps1 --title "<title>" --stage <stage> [--feature <name>] --json` (NOTE: This script does not yet exist)
    - Open the file and fill remaining placeholders (YAML + body), embedding full PROMPT_TEXT (verbatim) and concise RESPONSE_TEXT.
    - If the script fails:
      - Read `.specify/templates/phr-template.prompt.md` (or `templates/…`)
